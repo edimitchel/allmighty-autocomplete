@@ -1,0 +1,22 @@
+<div class="autocomplete {{ attrs.class }}" id="{{ attrs.id }}" ng-init="searchFilter = ''">
+	<input
+		type="text"
+		ng-model="searchParam"
+		ng-init="type = false"
+		placeholder="{{ attrs.placeholder }}"
+		class="{{ attrs.inputclass }}"
+		id="{{ attrs.inputid }}"
+		ng-required="{{ autocompleteRequired }}" />
+	<ul ng-class="{ 'show' : completing && ((suggestions | filter:searchMediaFilter:searchFilter:type).length > 0)}">
+		<li suggestion
+			ng-repeat="suggestion in suggestions | filter:searchMediaFilter:searchFilter:type | orderBy:suggestion.type track by $index "
+			index="{{ $index }}"
+			val="{{this}}"
+			ng-class="{ active: ($index === selectedIndex) }"
+			class="{{suggestion.type}}"
+			ng-click="select(suggestion)">
+			<div class="title" ng-bind-html="suggestion.title | highlight:searchFilter | withType:type"></div>
+			<div class="description" ng-bind="suggestion.description"></div>
+		</li>
+	</ul>
+</div>

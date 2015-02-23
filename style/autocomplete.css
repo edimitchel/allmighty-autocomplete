@@ -34,6 +34,11 @@
   background-color: #4bf;
 }
 
+.autocomplete li .description{
+  text-align: center;
+  color: gray;
+}
+
 .autocomplete .highlight {
   background-color: #E2E2E2;
 }
